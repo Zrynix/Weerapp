@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:contentDescription="@string/logo_desc" />
+
+    <TextView
+        android:id="@+id/nameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Amin"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_below="@id/logoImageView"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/registerUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Registratie Gebruikersnaam"
+        android:layout_below="@id/nameTextView"
+        android:layout_margin="16dp" />
+
+    <EditText
+        android:id="@+id/registerPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Registratie Wachtwoord"
+        android:inputType="textPassword"
+        android:layout_below="@id/registerUsername"
+        android:layout_margin="16dp" />
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/registerPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Registreer"
+        android:backgroundTint="#9D3A42" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Gebruikersnaam"
+        android:layout_below="@id/registerButton"
+        android:layout_margin="16dp"
+        android:visibility="gone" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Wachtwoord"
+        android:inputType="textPassword"
+        android:layout_below="@id/username"
+        android:layout_margin="16dp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Inloggen"
+        android:layout_below="@id/password"
+        android:layout_margin="16dp"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        android:backgroundTint="#9D3A42" />
+
+    <EditText
+        android:id="@+id/cityEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Stad"
+        android:layout_below="@id/loginButton"
+        android:layout_margin="16dp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/getWeatherButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Haal Weer op"
+        android:layout_below="@id/cityEditText"
+        android:layout_margin="16dp"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        android:backgroundTint="#9D3A42" />
+
+    <TextView
+        android:id="@+id/weatherTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Weer Info"
+        android:layout_below="@id/getWeatherButton"
+        android:layout_margin="16dp"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone" />
+</RelativeLayout>
