@@ -49,11 +49,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(Color.parseColor("#9D3A42"));
         }
-
 
         registerUsernameEditText = findViewById(R.id.registerUsername);
         registerPasswordEditText = findViewById(R.id.registerPassword);
@@ -153,7 +151,10 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<WeatherResponse> call, Response<WeatherResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     WeatherResponse weatherResponse = response.body();
-                    String weatherInfo = "Temperatuur: " + (weatherResponse.main.temp - 273.15) + "°C\n" +
+                    double temperatureCelsius = weatherResponse.main.temp - 273.15;
+                    String temperatureFormatted = String.format("%.2f", temperatureCelsius);
+
+                    String weatherInfo = "Temperatuur: " + temperatureFormatted + "°C\n" +
                             "Luchtvochtigheid: " + weatherResponse.main.humidity + "%\n" +
                             "Wind Directie: " + convertDegreeToDirection(weatherResponse.wind.deg) + "\n" +
                             "Wind Snelheid: " + weatherResponse.wind.speed + " m/s\n" +
