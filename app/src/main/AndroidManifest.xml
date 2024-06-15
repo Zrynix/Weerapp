@@ -5,9 +5,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/kurumi_foreground"
+        android:icon="@mipmap/kurumi"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/kurumi_round"
+        android:roundIcon="@mipmap/kurumi"
         android:supportsRtl="true"
         android:theme="@style/Theme.WeerAppHobbyclub">
         <activity
