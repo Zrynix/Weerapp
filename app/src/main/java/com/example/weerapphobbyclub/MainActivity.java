@@ -1,5 +1,7 @@
 package com.example.weerapphobbyclub;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -7,15 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.graphics.Color;
-import android.os.Build;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,6 +22,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
+
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -123,6 +123,18 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        if (savedInstanceState != null) {
+            registerUsernameEditText.setVisibility(savedInstanceState.getInt("registerUsernameVisibility"));
+            registerPasswordEditText.setVisibility(savedInstanceState.getInt("registerPasswordVisibility"));
+            registerButton.setVisibility(savedInstanceState.getInt("registerButtonVisibility"));
+            usernameEditText.setVisibility(savedInstanceState.getInt("usernameVisibility"));
+            passwordEditText.setVisibility(savedInstanceState.getInt("passwordVisibility"));
+            loginButton.setVisibility(savedInstanceState.getInt("loginButtonVisibility"));
+            cityEditText.setVisibility(savedInstanceState.getInt("cityEditTextVisibility"));
+            getWeatherButton.setVisibility(savedInstanceState.getInt("getWeatherButtonVisibility"));
+            weatherTextView.setVisibility(savedInstanceState.getInt("weatherTextViewVisibility"));
+        }
     }
 
     private void getWeatherData(String city) {
@@ -147,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
                             "Wind Snelheid: " + weatherResponse.wind.speed + " m/s\n" +
                             "Regen: " + (weatherResponse.weather[0].main.equals("Rain") ? "Ja" : "Nee");
                     weatherTextView.setText(weatherInfo);
+                    weatherTextView.setVisibility(View.VISIBLE); // Ensure weatherTextView is set to visible
                 } else {
                     Toast.makeText(MainActivity.this, "Fout bij het ophalen van de gegevens", Toast.LENGTH_SHORT).show();
                     Log.e(TAG, "Response code: " + response.code());
@@ -172,6 +185,34 @@ public class MainActivity extends AppCompatActivity {
                 "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"};
         int index = Math.round(degree / 22.5f) % 16;
         return directions[index];
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("registerUsernameVisibility", registerUsernameEditText.getVisibility());
+        outState.putInt("registerPasswordVisibility", registerPasswordEditText.getVisibility());
+        outState.putInt("registerButtonVisibility", registerButton.getVisibility());
+        outState.putInt("usernameVisibility", usernameEditText.getVisibility());
+        outState.putInt("passwordVisibility", passwordEditText.getVisibility());
+        outState.putInt("loginButtonVisibility", loginButton.getVisibility());
+        outState.putInt("cityEditTextVisibility", cityEditText.getVisibility());
+        outState.putInt("getWeatherButtonVisibility", getWeatherButton.getVisibility());
+        outState.putInt("weatherTextViewVisibility", weatherTextView.getVisibility());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        registerUsernameEditText.setVisibility(savedInstanceState.getInt("registerUsernameVisibility"));
+        registerPasswordEditText.setVisibility(savedInstanceState.getInt("registerPasswordVisibility"));
+        registerButton.setVisibility(savedInstanceState.getInt("registerButtonVisibility"));
+        usernameEditText.setVisibility(savedInstanceState.getInt("usernameVisibility"));
+        passwordEditText.setVisibility(savedInstanceState.getInt("passwordVisibility"));
+        loginButton.setVisibility(savedInstanceState.getInt("loginButtonVisibility"));
+        cityEditText.setVisibility(savedInstanceState.getInt("cityEditTextVisibility"));
+        getWeatherButton.setVisibility(savedInstanceState.getInt("getWeatherButtonVisibility"));
+        weatherTextView.setVisibility(savedInstanceState.getInt("weatherTextViewVisibility"));
     }
 
     interface WeatherService {
