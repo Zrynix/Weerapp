@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView nameTextView;
 
     private static final String BASE_URL = "https://api.openweathermap.org/data/2.5/";
-    private static final String API_KEY = "f55ab058c1a2e947271915a95258411f";
+    private static final String API_KEY = "c70341e8008a5045c332feb17f920159";
     private static final String TAG = "MainActivity";
 
     private HashMap<String, String> userDatabase = new HashMap<>();
@@ -49,12 +49,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Set status bar color
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(Color.parseColor("#9D3A42"));
         }
 
-        // Initialize UI components
+
         registerUsernameEditText = findViewById(R.id.registerUsername);
         registerPasswordEditText = findViewById(R.id.registerPassword);
         registerButton = findViewById(R.id.registerButton);
