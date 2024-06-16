@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -39,15 +40,19 @@ public class MainActivity extends AppCompatActivity {
     private TextView nameTextView;
 
     private static final String BASE_URL = "https://api.openweathermap.org/data/2.5/";
-    private static final String API_KEY = "c70341e8008a5045c332feb17f920159";
     private static final String TAG = "MainActivity";
 
     private HashMap<String, String> userDatabase = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO); // Enforce light theme
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Ensure the background is white
+        getWindow().getDecorView().setBackgroundColor(Color.WHITE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(Color.parseColor("#9D3A42"));
@@ -144,7 +149,8 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         WeatherService service = retrofit.create(WeatherService.class);
-        Call<WeatherResponse> call = service.getWeather(city, API_KEY);
+        String apiKey = getString(R.string.weather_api_key);  // Retrieve the API key from resources
+        Call<WeatherResponse> call = service.getWeather(city, apiKey);
 
         call.enqueue(new Callback<WeatherResponse>() {
             @Override
@@ -182,8 +188,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String convertDegreeToDirection(float degree) {
-        String[] directions = {"N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE",
-                "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"};
+        String[] directions = {"N", "NNO", "NO", "ONO", "O", "OZO", "ZO", "ZZO",
+                "Z", "ZZW", "ZW", "WZW", "W", "WNW", "NW", "NNW"};
         int index = Math.round(degree / 22.5f) % 16;
         return directions[index];
     }
